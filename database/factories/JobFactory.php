@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Employer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,15 +10,17 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class JobFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    
     public function definition(): array
     {
         return [
-            //
+            'employer_id' => Employer::factory(),
+            'title' => fake()-> jobTitle(),
+            'salary' => fake()->randomElement('$50,000 USD', '$150,000 USD', '$1,000 USD'),
+            'location' => 'remote',
+            'schedule' => 'Full Time',
+            'url' => fake()->url(),
+            'featured' => false,
         ];
     }
 }
