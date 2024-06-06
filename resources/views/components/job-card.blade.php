@@ -7,9 +7,9 @@
     </div>
     <div class="flex justify-between items-center mt-auto">
         <div>
-            @foreach ($job->tags as $tag )
-            <x-tag :tag="$tag"/>            
-            @endforeach    
+            @foreach($job->tags as $tag)
+                <x-tag :$tag size="small" />
+            @endforeach   
         </div>
         <x-employer-logo :width="42"></x-employer-logo>
     </div> 

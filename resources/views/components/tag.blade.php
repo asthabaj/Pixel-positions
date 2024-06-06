@@ -1,4 +1,4 @@
-@props(['tag','size' => 'base'])
+@props(['tag', 'size' => 'base'])
 
 @php
     // Base classes
@@ -12,10 +12,4 @@
         $classes .= " px-3 py-1 text-xs";
     }
 @endphp
-
-<a href="/tags/{{strtolower($tag->name)}}" class="{{ $classes }}">{{ $tag->name }}</a>
-
-
-
-
-
+<a href="/tags/{{ strtolower($tag->name) }}" class="{{ $classes }}">{{ $tag->name }}</a>

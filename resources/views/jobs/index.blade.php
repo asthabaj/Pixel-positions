@@ -1,6 +1,6 @@
 <x-layout>
     <div class="space-y-10">
-        <section class="text-center pt-3">
+        <section class="text-center">
             <h1 class="font-bold text-4xl">Let's find your next job</h1>
 
             <form action="">
@@ -20,8 +20,8 @@
         <section>
             <x-section-heading>Tags</x-section-heading>
             <div class="mt-6 space-x-2" >
-                @foreach ($tags as $tag )
-                <x-tag :tag="$tag"/>  
+                @foreach ($tags as $tag)
+                    <x-tag :tag="$tag"/>  
                 {{-- same parameter and variable name <x-tag :$tag />   --}}
                 @endforeach
                 
@@ -33,7 +33,7 @@
 
             <div class="mt-6 space-y-5">
                 @foreach ($jobs as $job )
-                <x-tag :job="$job"/>            
+                <x-job-card-wide :job="$job"/>            
                 @endforeach  
             </div>            
         </section>
