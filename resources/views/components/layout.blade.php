@@ -18,7 +18,7 @@
                     <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="">
                 </a>
             </div>
-            <div class="space-x-11 font-bold">
+            <div class="space-x-20 font-bold">
                 <a href="">Jobs</a>
                 <a href="">Careers</a>
                 <a href="">Salary</a>
@@ -26,9 +26,16 @@
             </div>
 
             @auth
-                <div>
+                <div class="space-x-20 font-bold flex">
                     <a href="/jobs/create">Post a Job</a>
-                </div>   
+
+                    <form method="POST" action="/logout">
+                        @csrf
+                        @method('DELETE')
+
+                        <button>Log Out</button>
+                    </form>
+                </div> 
             @endauth
 
             @guest
