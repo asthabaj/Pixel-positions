@@ -1,9 +1,9 @@
 @props(['job'])
 <x-panel class="flex flex-col">
-    <div class="self-start text-sm">Laracasts</div>
+    <div class="self-start text-sm">{{$job->employer->name}}</div>
     <div class="py-8 ">
-        <h3 class="group-hover:text-blue-600 text-lg font-bold transition-colors duration-100">Video Presenter</h3>
-        <p class="text-sm">Full Time - From $50,000</p>
+        <h3 class="group-hover:text-blue-600 text-lg font-bold transition-colors duration-100">{{$job->title}}</h3>
+        <p class="text-sm">{{$job->salary}}</p>
     </div>
     <div class="flex justify-between items-center mt-auto">
         <div>

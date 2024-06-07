@@ -5,11 +5,11 @@
     </div>
 
     <div class="flex-1">
-        <a href="#" class="self-start text-sm">Laracasts</a>
+        <a href="#" class="self-start text-sm">{{$job->employer->name}}</a>
        
-        <h3 class="font-bold text-lg group-hover:text-blue-600 transition-colors duration-100">Video Presenter</h3>
+        <h3 class="font-bold text-lg group-hover:text-blue-600 transition-colors duration-100">{{$job->title}}</h3>
 
-        <p class="text-sm mt-auto">Full Time - From $50,000</p>
+        <p class="text-sm mt-auto">{{$job->salary}}</p>
     
     </div>
     
