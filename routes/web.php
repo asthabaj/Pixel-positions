@@ -20,8 +20,10 @@ Route::post('/jobs', [JobController::class, 'store'])-> middleware('auth');
 
 Route::get('/search', SearchController::class);
 
-Route::get('/employer/profile', [EmployerController::class, 'profile']);
-Route::patch('/employer/update', [EmployerController::class, 'update'])->name('employer.update')->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/employer/profile', [EmployerController::class, 'profile'])->name('employer.profile');
+    Route::patch('/employer/update', [EmployerController::class, 'update'])->name('employer.update');
+});
 
 Route::get('/tags/{tag:name}', TagController::class);
 

@@ -36,9 +36,8 @@ class EmployerController extends Controller
     {
         $user = Auth::user();
         if (!$user) {
-            return redirect()->route('login')->withErrors('You must be logged in to update your profile.');
+            return redirect('login')->withErrors('You must be logged in to update your profile.');
         }
-        dd("a");
         $employer = $user->employer;
         $attributes=$request->validate([
             'name' => ['required'],
@@ -51,11 +50,22 @@ class EmployerController extends Controller
             'name' => $attributes['name'],
             'logo' => $request->hasFile('logo') ? $request->file('logo')->store('logos', 'public') : $employer->logo,
         ]);
-        // $user->update([
-        //     'email' => $attributes['email'],
-        //     'password' => $attributes['password'] ? bcrypt($attributes['password']) : $user->password,
-        // ]);
+
+        $userData = [
+            'email' => $attributes['email'],
+            'password' => $attributes['password'] ? bcrypt($attributes['password']) : $user->password,
+        ];
+
+        $user->update($userData);
+
+        // Log out the user if email or password was updated
+        if ($request->email || $request->password) {
+            Auth::logout();
+            return redirect('login')->with('message', 'Your profile was updated. Please log in again.');
+        }
+        
         return redirect()->route('employer.profile')->with('success', 'Profile updated successfully.');
+
 
 
     }
