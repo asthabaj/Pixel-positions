@@ -18,7 +18,10 @@ Route::get('/jobs/create', [JobController::class, 'create'])-> middleware('auth'
 Route::post('/jobs', [JobController::class, 'store'])-> middleware('auth');
 
 
-Route::get('/search', SearchController::class);
+Route::get('/jobs/search', [SearchController::class, 'jobs'])->name('jobs.search');
+Route::get('/companies/search', [SearchController::class, 'companies'])->name('companies.search');
+
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/employer/profile', [EmployerController::class, 'profile'])->name('employer.profile');

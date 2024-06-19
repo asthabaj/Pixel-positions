@@ -19,7 +19,7 @@
                 </a>
             </div>
             <div class="space-x-20 font-bold">
-                <a href="">Jobs</a>
+                <a href="/">Jobs</a>
                 <a href="/companies/index">Companies</a>
                 @auth
                     <a href="/employer/profile">Profile</a>   

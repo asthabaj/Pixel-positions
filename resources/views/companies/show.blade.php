@@ -1,7 +1,7 @@
 <x-layout>
-    <x-slot:heading>
+    <x-page-heading>
         Jobs at {{ $employer->name }}
-    </x-slot:heading>
+    </x-page-heading>
     <section class="space-y-4">
         <div class="mt-6 space-y-5">
             @foreach ($jobs as $job)
