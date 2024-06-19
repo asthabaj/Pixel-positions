@@ -38,3 +38,7 @@ Route::middleware('guest')->group(function(){
 });
 
 Route::delete('/logout', [SessionController::class, 'destroy'])->middleware('auth');
+
+Route::get('/companies/index', [EmployerController::class, 'index'])->name('companies.index');
+Route::get('/companies/{employer}', [EmployerController::class, 'show'])->name('companies.show');
+

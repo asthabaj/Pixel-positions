@@ -65,8 +65,26 @@ class EmployerController extends Controller
         }
         
         return redirect()->route('employer.profile')->with('success', 'Profile updated successfully.');
-
-
-
     }
+
+    public function index()
+{
+    $employers = Employer::all();
+
+    return view('companies.index', [
+        'employers' => $employers,
+    ]);
+}
+
+// EmployerController.php
+public function show(Employer $employer)
+{
+    $jobs = $employer->jobs;
+
+    return view('companies.show', [
+        'employer' => $employer,
+        'jobs' => $jobs,
+    ]);
+}
+
 }
