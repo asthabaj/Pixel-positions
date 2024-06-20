@@ -76,7 +76,6 @@ class EmployerController extends Controller
     ]);
 }
 
-// EmployerController.php
 public function show(Employer $employer)
 {
     $jobs = $employer->jobs;
@@ -86,5 +85,7 @@ public function show(Employer $employer)
         'jobs' => $jobs,
     ]);
 }
+
+
 
 }

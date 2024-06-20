@@ -23,4 +23,16 @@
     <x-modal>
         <p>Are you sure you want to update your profile details?</p>
     </x-modal>
+
+    <section class="mt-10">
+        <h2 class="font-bold text-2xl mb-4">Your Posted Jobs, {{ $employer->name }}</h2>
+        
+        <div class="space-y-5">
+            @forelse ($jobs as $job)
+                <x-job-card-wide :job="$job" />
+            @empty
+                <p>No jobs posted yet.</p>
+            @endforelse
+        </div>
+    </section>
 </x-layout>
