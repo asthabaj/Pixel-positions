@@ -17,7 +17,7 @@
     const modal = document.querySelector('.modal');
     const backdrop = document.querySelector('.modal-backdrop');
     const body = document.querySelector('body');
-    const form = document.querySelector('#updateForm'); // Select the form by ID
+    const form = document.querySelector('#updateForm');
 
     const openModal = function (e) {
         e.preventDefault();

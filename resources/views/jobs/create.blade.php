@@ -8,7 +8,7 @@
         <x-forms.input label="Salary" name="salary" placeholder="$10,000 USD"/>
         <x-forms.input label="Location" name="location" placeholder="Sanepa, Lalitpur"/>
 
-        <x-forms.select label="Schedule" name="schedule">
+        <x-forms.select label="Schedule" name="schedule" class="text-black ">
             <option>Part Time</option>
             <option>Full Time</option>
         </x-forms.select>

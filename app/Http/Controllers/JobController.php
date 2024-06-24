@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employer;
 use App\Models\Job;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+
 
 class JobController extends Controller
 {
@@ -58,6 +60,65 @@ class JobController extends Controller
         }
         return redirect('/');
     }
+
+    public function edit(Job $job)
+{
+    $currentUserId = Auth::id();
+    $employer = Employer::where('user_id', $currentUserId)->first();
+
+    if ($employer->id !== $job->employer_id) {
+        abort(403, 'Unauthorized action.');
+    }
+
+    return view('jobs.edit', compact('job'));
+}
+
+public function update(Request $request, Job $job)
+{
+    $currentUserId = Auth::id();
+    $employer = Employer::where('user_id', $currentUserId)->first();
+
+    if ($employer->id !== $job->employer_id) {
+        abort(403, 'Unauthorized action.');
+    }
+
+    $attributes = $request->validate([
+        'title' => ['required'],
+        'salary' => ['required'],
+        'location' => ['required'],
+        'schedule' => ['required', Rule::in(['Part Time', 'Full Time'])],
+        'url' => ['required', 'active_url'],
+        'tags' => ['nullable'],
+    ]);
+
+    $attributes['featured'] = $request->has('featured');
+
+    $job->update(Arr::except($attributes, 'tags'));
+
+    // if (!empty($attributes['tags'])) {
+    //     $tags = array_map('trim', explode(',', $attributes['tags']));
+    //     $job->syncTags($tags);
+    // } else {
+    //     $job->syncTags([]);
+    // }
+
+    return redirect()->route('employer.profile')->with('success', 'Job updated successfully.');
+}
+    
+public function destroy(Job $job)
+{
+    $currentUserId = Auth::id();
+    $employer = Employer::where('user_id', $currentUserId)->first();
+
+    if ($employer->id !== $job->employer_id) {
+        abort(403, 'Unauthorized action.');
+    }
+
+    $job->delete();
+
+    return redirect()->route('employer.profile')->with('success', 'Job deleted successfully.');
+}
+
 
     
 }

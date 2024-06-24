@@ -45,3 +45,9 @@ Route::delete('/logout', [SessionController::class, 'destroy'])->middleware('aut
 Route::get('/companies/index', [EmployerController::class, 'index'])->name('companies.index');
 Route::get('/companies/{employer}', [EmployerController::class, 'show'])->name('companies.show');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit');
+    Route::patch('/jobs/{job}', [JobController::class, 'update'])->name('jobs.update');
+    Route::delete('/jobs/{job}', [JobController::class, 'destroy'])->name('jobs.destroy');
+});
+

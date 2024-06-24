@@ -1,4 +1,5 @@
 @props(['job'])
+
 <x-panel>
     <div>
         <x-employer-logo :employer="$job->employer" />
@@ -14,13 +15,21 @@
         </h3>
 
         <p class="text-sm mt-auto">{{$job->salary}}</p>
+
+        <p class="text-sm mt-auto">{{$job->schedule}}</p>
+
+        <p class="text-sm mt-auto">{{$job->location}}</p>
+
     
     </div>
     
- 
     <div>
         @foreach ($job->tags as $tag )
         <x-tag :tag="$tag"/>            
         @endforeach        
+    </div>
+
+    <div class="flex justify-end mt-4 space-x-2">
+        {{ $slot }}
     </div>
 </x-panel>

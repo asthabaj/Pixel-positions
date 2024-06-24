@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('schedule')->default('Full Time');
             $table->boolean('featured')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
